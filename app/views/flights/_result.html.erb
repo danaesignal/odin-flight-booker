@@ -1,0 +1,4 @@
+<%= b.radio_button :flight_id, result.id %>
+<%= b.label :flight_id, "#{flight.origin.code} to #{flight.destination.code}
+   - Departs: #{flight.departure.strftime('%a, %b %d, at %r (%Z)')}", value: result.id
+   %></br>

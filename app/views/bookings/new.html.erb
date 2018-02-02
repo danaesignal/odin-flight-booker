@@ -1,0 +1,12 @@
+<%= form_for @booking do |b| %>
+  <%= render @booking.flight, b: b %>
+    <%= b.fields_for :passengers do |passenger| %>
+      <h3>Passenger Information:</h3>
+      <%= passenger.label :name, "Passenger Full Name:" %>
+      <%= passenger.text_field :name %></br>
+
+      <%= passenger.label :name, "Passenger Contact Email:" %>
+      <%= passenger.text_field :email %></br>
+    <% end %>
+  <p><%= b.submit "Confirm" %></p>
+<% end %>

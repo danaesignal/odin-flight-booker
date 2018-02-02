@@ -1,0 +1,28 @@
+<h1>Flight Booker</h1>
+
+<%= form_tag(flights_path, method: "get", id: "flight-search") do %>
+  <%= fields_for :search do |pre_booking| %>
+    <%= pre_booking.label :origin, "Origin:" %>
+    <%= pre_booking.select(:origin, @all_airports) %></br>
+
+    <%= pre_booking.label :destination, "Destination:" %>
+    <%= pre_booking.select(:destination, @all_airports) %></br>
+
+    <%= pre_booking.label :passengers, "Number of Passengers:" %>
+    <%= pre_booking.select :passengers, (1..4) %></br>
+
+    <%= pre_booking.label :departure, "Departure Date:" %>
+    <%= pre_booking.select(:departure, @distinct_dates) %></br>
+
+    <%= pre_booking.submit "Search" %>
+  <% end %>
+<% end %>
+</br>
+<!-- Only attempt to render the following if we have results -->
+<% if @search_results %>
+  <%= form_for @booking, url: new_booking_path, method: "get" do |b| %>
+    <%= render @search_results, b: b %>
+    <%= hidden_field_tag :headcount, @headcount %>
+    <%= b.submit "Book" %>
+  <% end %>
+<% end %>

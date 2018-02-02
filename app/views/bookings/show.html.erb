@@ -1,0 +1,13 @@
+<ul>
+  <li>Booking #: <%= @booking.id %>
+  <li>Route: <%= @booking.flight.origin.code %> to <%= @booking.flight.destination.code %></li>
+  <li>Departs: <%= @booking.flight.departure.strftime('%a, %b %d, at %r (%Z)')%></li>
+  <li>Duration: <%= distance_of_time_in_words(@booking.flight.duration) %></li>
+  <li>Passengers: <%= @booking.passengers.count %>
+    <ul>
+      <% @booking.passengers.each do |passenger| %>
+        <li><%= render 'passenger', passenger: passenger %></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
