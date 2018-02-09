@@ -1,4 +1,6 @@
 class BookingsController < ApplicationController
+  include BookingsHelper
+  
   def new
     @headcount = params[:headcount].to_i
     @booking = Booking.new(booking_params)
@@ -9,6 +11,7 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.new(booking_params)
     if @booking.save
+      send_confirmation_emails(@booking)
       redirect_to @booking
     else
       redirect_to root_path

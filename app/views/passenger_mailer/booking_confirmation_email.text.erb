@@ -1,0 +1,8 @@
+Get ready for a trip!
+
+<%= @passenger.name %>, we're emailing to confirm your booking for flight <%= @booking.flight.id %>,
+<%= @booking.flight.origin.code %> to <%= @booking.flight.destination.code %>, on <%= @booking.flight.departure.strftime('%A, %d %B, at %r (%Z)') %>.
+
+To view your full booking, please visit this url: <%= booking_url(@booking, host: 'localhost:3000') %>
+
+Thanks for flying Odin Airlines! We hope you have a ragna-rockin' time!
